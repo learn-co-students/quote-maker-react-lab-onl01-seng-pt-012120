@@ -30,7 +30,8 @@ class QuoteForm extends Component {
     let quote = {
       id: uuid(),
       content: this.state.content,
-      author: this.state.author
+      author: this.state.author,
+      votes: 0
     }
     this.props.addQuote(quote)
     this.setState({

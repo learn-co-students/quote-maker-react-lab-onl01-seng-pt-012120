@@ -6,18 +6,10 @@ import { upvoteQuote } from "../actions/quotes";
 import { downvoteQuote } from "../actions/quotes";
 
 class Quotes extends Component {
-  loadQuotes = () => {
-    this.props.quotes.map((quote) => (
-      <li>
-        <QuoteCard
-          details={quote}
-          removeQuote={removeQuote(quote.id)}
-          upvoteQuote={upvoteQuote(quote.id)}
-          downvoteQuote={downvoteQuote(quote.id)}
-        />
-      </li>
-    ));
-  };
+
+  componentDidMount() {
+    removeQuote()
+  }
 
   render() {
     return (
@@ -30,7 +22,17 @@ class Quotes extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-4">
-              {this.loadQuotes()}
+              {this.props.quotes.map((quote) => (
+              <div>
+                <QuoteCard
+                  key={quote.id}
+                  quote={quote}
+                  removeQuote={this.props.removeQuote}
+                  upvoteQuote={this.props.upvoteQuote}
+                  downvoteQuote={this.props.downvoteQuote}
+                />
+              </div>
+              ))}
             </div>
           </div>
         </div>
@@ -45,4 +47,11 @@ const mapStateToProps = (state) => {
     quotes: state.quotes,
   };
 };
-export default connect(mapStateToProps)(Quotes);
+
+const mapDispatchToProps = dispatch => ({
+  upvoteQuote: (quote) => dispatch(upvoteQuote(quote)),
+  downvoteQuote: (quote) => dispatch(downvoteQuote(quote)),
+  removeQuote: (quote) => dispatch(removeQuote(quote))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Quotes);
