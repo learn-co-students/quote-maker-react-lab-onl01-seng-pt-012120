@@ -1,13 +1,13 @@
 // TODO: Create action creators as defined in tests
 export const addQuote = quote => {
-  // console.log('u added a quote!')
+  console.log('inside addQuote action')
   return {
     type: 'ADD_QUOTE', quote
   }
 }
 
 export const removeQuote = quoteId => {
-  // console.log('u removed me', quoteId)
+  console.log('in removeQuote action')
   return {
     type: 'REMOVE_QUOTE', quoteId: quoteId
   }

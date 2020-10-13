@@ -39,6 +39,6 @@ const mapStateToProps = state => {
 }
 
 //add arguments to connect as needed
-export default connect(mapStateToProps)(Quotes);
+export default connect(mapStateToProps, { removeQuote })(Quotes);
 // or if u comment out definition of mapStateToProps
 // export default connect(state => ({quotes: state.quotes}))(Quotes);
