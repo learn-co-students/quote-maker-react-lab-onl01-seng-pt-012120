@@ -1,13 +1,30 @@
+import uuid from 'uuid';
+
 export default (state = [], action) => {
-  console.log(`inside reducer with action.type = '${action.type}'`)
+  let idx
+  let selectedQuote
 
   switch (action.type) {
     case 'ADD_QUOTE':
-      return [...state, action.quote]
+      return [ ...state, action.quote ]
+
     case 'REMOVE_QUOTE':
-      // need to return a filtered list of quotes 
-      // minus the one we want to delete
-      return [...state, action.quote]
+      return state.filter(quote => quote.id !== action.quoteId)
+
+    case 'UPVOTE_QUOTE':
+      idx = state.findIndex(quote => quote.id === action.quoteId)
+      selectedQuote = state[idx]
+      selectedQuote.votes += 1
+ 
+      return [...state.slice(0, idx), selectedQuote, ...state.slice(idx + 1)]
+
+    case 'DOWNVOTE_QUOTE':
+      idx = state.findIndex(quote => quote.id === action.quoteId)
+      selectedQuote = state[idx]
+      selectedQuote.votes > 0 ? selectedQuote.votes -= 1 : selectedQuote.votes = 0
+
+      return [...state.slice(0, idx), selectedQuote, ...state.slice(idx + 1)]
+
     default:
       return state;
   }
