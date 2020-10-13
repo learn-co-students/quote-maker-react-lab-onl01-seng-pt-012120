@@ -7,19 +7,21 @@ export const addQuote = quote => {
 }
 
 export const removeQuote = quoteId => {
-  console.log('in removeQuote action')
+  console.log(`in removeQuote action with id : ${quoteId} `)
   return {
-    type: 'REMOVE_QUOTE', quoteId: quoteId
+    type: 'REMOVE_QUOTE', quoteId
   }
 }
 
 export const upVoteQuote = quoteId => {
+  console.log('in upVoteQuote action')
   return {
     type: 'UPVOTE_QUOTE', quoteId
   }
 }
 
 export const downVoteQuote = quoteId => {
+  console.log('in downVoteQuote action')
   return {
     type: 'DOWNVOTE_QUOTE', quoteId
   }
