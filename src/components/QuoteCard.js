@@ -1,7 +1,5 @@
 import React from 'react';
-import { removeQuote } from '../actions/quotes';
-import { upvoteQuote } from '../actions/quotes';
-import { downvoteQuote } from '../actions/quotes';
+
 
 const QuoteCard = (props) =>
   <div>
